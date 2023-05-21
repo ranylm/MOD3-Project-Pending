@@ -1,0 +1,29 @@
+{
+  "name": "captains-log",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node js/server.js",
+    "dev": "concurrently \"nodemon server.ts\" \"pnpm --prefix ./client run dev\"",
+    "prod-build": "npm install && cd ./client && npm install && npm run build",
+    "prod-start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.2.0",
+    "morgan": "^1.10.0",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "concurrently": "^8.0.1",
+    "ts-node": "^10.9.1"
+  }
+}
