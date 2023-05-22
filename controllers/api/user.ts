@@ -1,4 +1,5 @@
 import { RequestHandler, Request, Response } from "express";
+import { ObjectId } from "mongoose";
 import User, { IUser } from "../../models/User";
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -13,7 +14,7 @@ const newUser: RequestHandler = async (req, res) => {
     const data: IUser = {
       email: req.body.email,
       password: req.body.password,
-      username: req.body.username,
+      name: req.body.name,
     };
     const user = await User.create(data);
     // console.log(user);
@@ -48,9 +49,8 @@ const getOrg: RequestHandler = async (req, res) => {
   try {
     const orgList = await User.findById(req.user._id).populate(
       "organizationList",
-      "name"
+      "name owner"
     );
-    console.log(orgList);
     res.status(200).json(orgList?.organizationList);
   } catch (error: any) {
     console.log(error);

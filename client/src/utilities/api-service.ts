@@ -38,9 +38,9 @@ class ApiRequest {
         body: this._body,
       });
       if (res.ok) return await res.json();
-      return res.ok;
-    } catch (error) {
-      console.log("There was a error ", error);
+      throw new Error("Creation Failed");
+    } catch (error: any) {
+      return { error: error.message };
     }
   }
 }

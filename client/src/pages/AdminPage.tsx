@@ -12,7 +12,7 @@ export default function AdminPage() {
             await User.newUser({
               email: "qwe2@qwe.com",
               password: "qwe",
-              username: "qwe",
+              name: "qwe",
             }).send()
           );
         }}

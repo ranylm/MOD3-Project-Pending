@@ -7,6 +7,8 @@ const protectedRoute = require("../../config/ensureLoggedIn.js");
 // Route /api/orgs
 router.use(protectedRoute);
 
+router.get("/:orgId/getMembers", organizationCtrl.getMembers);
+
 router.post("/:orgId/addMember/", organizationCtrl.addMember);
 
 router.put("/:orgId/changeOwner/", organizationCtrl.changeOwner);

@@ -13,7 +13,7 @@ const newOrganization: RequestHandler = async (req, res) => {
   try {
     const org = await Organization.create({
       owner: req.user._id,
-      name: req.body.name,
+      name: req.body.orgName,
       memberList: [req.user._id],
       warehouseList: [],
     });
@@ -21,12 +21,24 @@ const newOrganization: RequestHandler = async (req, res) => {
       $push: { organizationList: org._id },
     });
     console.log(org);
-    res.status(200).json(org);
+    res.status(200).json({ id: org._id });
   } catch (error: any) {
     res.status(400).send({ error: error.message });
   }
 };
 
+const getMembers: RequestHandler = async (req, res) => {
+  try {
+    console.log("getting members from", req.params.orgId);
+    const memberList = await Organization.findById(req.params.orgId)
+      .populate("memberList")
+      .populate("warehouseList");
+    console.log(memberList);
+    res.status(200).json(memberList?.memberList);
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
+};
 const changeOwner: RequestHandler = async (req, res) => {
   try {
     const org = await Organization.findById(req.params.orgId);
@@ -58,13 +70,16 @@ const addMember: RequestHandler = async (req, res) => {
       await Organization.findByIdAndUpdate<IOrganization>(req.params.orgId, {
         $addToSet: { memberList: req.body.id },
       });
+      await User.findByIdAndUpdate(req.body.id, {
+        $addToSet: { organizationList: req.params.orgId },
+      });
     } else {
       throw new Error("You do not have permission.");
     }
-    res.status(200).send("Add Member");
+    res.status(200).json({ id: req.body.id });
   } catch (error: any) {
     console.log(error);
-    res.status(400).send({ error: error.message });
+    res.status(400).json({ error: error.message });
   }
 };
-export default { newOrganization, changeOwner, addMember };
+export default { newOrganization, changeOwner, addMember, getMembers };

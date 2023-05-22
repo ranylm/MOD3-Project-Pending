@@ -16,14 +16,17 @@ export const User = {
 
 // import { IOrganization } from "../../../models/Organization";
 export const Org = {
-  newOrg: (id: string) => {
-    api.post("api/orgs/").body({ id: id });
+  newOrg: (orgName: string) => {
+    return api.post("/api/orgs/").body({ orgName: orgName }).auth();
   },
   addMember: (orgId: string, UserID: string) => {
-    api.post(`api/orgs/${orgId}/addMember`).body({ id: UserID });
+    return api.post(`/api/orgs/${orgId}/addMember`).body({ id: UserID }).auth();
   },
   changeOwner: (orgId: string, UserID: string) => {
-    api.put(`api/orgs/${orgId}/changeOwner`).body({ id: UserID });
+    return api.put(`/api/orgs/${orgId}/changeOwner`).body({ id: UserID });
+  },
+  getMembers: (orgId: string) => {
+    return api.get(`/api/orgs/${orgId}/getMembers`).auth();
   },
   // Delete organziation
 };

@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { User } from "../../utilities/agent-service";
 
 type RegisterInput = {
-  username: string;
+  name: string;
   email: string;
   password: string;
   verify: string;
@@ -28,7 +28,7 @@ export default function RegisterForm() {
       <h1>RegisterForm</h1>
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         Username
-        <input {...register("username", { required: true })} />
+        <input {...register("name", { required: true })} />
         Email
         <input {...register("email", { required: true })} type="email" />
         Password
