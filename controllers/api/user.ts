@@ -20,9 +20,9 @@ const newUser: RequestHandler = async (req, res) => {
     // const token = createJWT(user);
 
     res.status(200).json("success");
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
-    res.status(400).json(error);
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -31,16 +31,16 @@ const login: RequestHandler = async (req, res) => {
     // console.log(req?.user);
     // Query our database to find a user with the email provided
     const user = await User.findOne({ email: req.body.email });
-    if (!user) throw new Error();
+    if (!user) throw new Error("User not found.");
     // if we found the email, compare password
     // 1st argument from the credentials that the user typed in
     // 2nd argument what's stored in the database
     const match = await bcrypt.compare(req.body.password, user.password);
-    if (!match) throw new Error();
+    if (!match) throw new Error("Password Invalid");
     // if everything checks out, create token, login!
     res.json(createJWT(user));
-  } catch {
-    res.status(400).json("Bad Credentials");
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
   }
 };
 
@@ -52,9 +52,9 @@ const getOrg: RequestHandler = async (req, res) => {
     );
     console.log(orgList);
     res.status(200).json(orgList?.organizationList);
-  } catch (error) {
+  } catch (error: any) {
     console.log(error);
-    res.status(400).send(error);
+    res.status(400).send({ error: error.message });
   }
 };
 

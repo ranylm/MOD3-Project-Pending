@@ -10,14 +10,14 @@ export const User = {
     return api.post("/api/users/login").body(data);
   },
   getOrg: () => {
-    return api.get("/api/users/orgs");
+    return api.get("/api/users/orgs").auth();
   },
 };
 
 // import { IOrganization } from "../../../models/Organization";
 export const Org = {
   newOrg: (id: string) => {
-    api.post("api/orgs/").body(id);
+    api.post("api/orgs/").body({ id: id });
   },
   addMember: (orgId: string, UserID: string) => {
     api.post(`api/orgs/${orgId}/addMember`).body({ id: UserID });

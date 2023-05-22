@@ -1,7 +1,10 @@
 import "./App.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { getUser } from "./utilities/user-service";
-import AdminPage from "./pages/AdminPage";
+// import AdminPage from "./pages/AdminPage";
+import AuthPage from "./pages/AuthPage";
+
+import HomePage from "./pages/VerifiedPortal/HomePage";
 function App() {
   const [user, setUser]: [
     null,
@@ -10,9 +13,8 @@ function App() {
 
   return (
     <div>
-      <h1>Testing 1 2 3</h1>
-
-      <AdminPage />
+      <h1>Home</h1>
+      {user ? <HomePage /> : <AuthPage setUser={setUser}></AuthPage>}
     </div>
   );
 }

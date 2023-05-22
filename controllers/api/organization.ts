@@ -22,9 +22,8 @@ const newOrganization: RequestHandler = async (req, res) => {
     });
     console.log(org);
     res.status(200).json(org);
-  } catch (error) {
-    console.log(error);
-    res.status(400).send(error);
+  } catch (error: any) {
+    res.status(400).send({ error: error.message });
   }
 };
 
@@ -32,7 +31,7 @@ const changeOwner: RequestHandler = async (req, res) => {
   try {
     const org = await Organization.findById(req.params.orgId);
     if (!org) throw new Error("Organization Not Found");
-    // If user is owner and targetUserId is a member of Org update owner
+    // If [user] is owner and promoted [id] member of Org, change [owner]
     if (
       req.user._id?.toString() === org.owner.toString() &&
       org.memberList.find((e) => e.toString() === req.body.id.toString())
@@ -45,7 +44,7 @@ const changeOwner: RequestHandler = async (req, res) => {
     }
     res.status(200).send("Owner changed");
   } catch (error: any) {
-    res.status(400).send(error.message);
+    res.status(400).send({ error: error.message });
   }
 };
 
@@ -54,6 +53,7 @@ const addMember: RequestHandler = async (req, res) => {
     const org = await Organization.findById(req.params.orgId);
     if (!org) throw new Error("Organization Not Found");
     console.log(req.user._id?.toString() === org.owner.toString());
+    // Check if user is owner before adding new member
     if (req.user._id?.toString() === org.owner.toString()) {
       await Organization.findByIdAndUpdate<IOrganization>(req.params.orgId, {
         $addToSet: { memberList: req.body.id },
@@ -64,7 +64,7 @@ const addMember: RequestHandler = async (req, res) => {
     res.status(200).send("Add Member");
   } catch (error: any) {
     console.log(error);
-    res.status(400).send(error.message);
+    res.status(400).send({ error: error.message });
   }
 };
 export default { newOrganization, changeOwner, addMember };

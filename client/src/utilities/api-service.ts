@@ -21,7 +21,7 @@ class ApiRequest {
     return this;
   }
 
-  body(body: any) {
+  body(body: object) {
     this._body = JSON.stringify(body);
     return this;
   }
@@ -38,8 +38,9 @@ class ApiRequest {
         body: this._body,
       });
       if (res.ok) return await res.json();
+      return res.ok;
     } catch (error) {
-      console.log(error);
+      console.log("There was a error ", error);
     }
   }
 }

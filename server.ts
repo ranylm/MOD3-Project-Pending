@@ -31,6 +31,7 @@ app.use(express.json());
 app.use(require("./config/checktoken"));
 app.use("/api/users", require("./routes/api/users"));
 app.use("/api/orgs", require("./routes/api/organizations"));
+app.use("/api/warehouse", require("./routes/api/warehouses"));
 
 // Catch all Route to Home
 app.get("/*", function (req, res) {

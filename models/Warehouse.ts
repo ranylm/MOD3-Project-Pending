@@ -3,7 +3,6 @@ import { Schema, Types, Document, model } from "mongoose";
 export interface IWarehouse {
   _id?: Types.ObjectId;
   owner: Types.ObjectId;
-  memberList: Types.ObjectId[];
   ownerType: "User" | "Organization";
 }
 

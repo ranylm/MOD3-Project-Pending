@@ -10,6 +10,7 @@ export interface IUser {
   username: string;
   password: string;
   organizationList?: Types.Array<Types.ObjectId>;
+  warehouseList?: Types.Array<Types.ObjectId>;
 }
 
 const userSchema = new Schema<IUser>(
@@ -32,6 +33,10 @@ const userSchema = new Schema<IUser>(
     organizationList: {
       type: [Schema.Types.ObjectId],
       ref: "Organization",
+    },
+    warehouseList: {
+      type: [Schema.Types.ObjectId],
+      ref: "Warehouse",
     },
   },
   {
