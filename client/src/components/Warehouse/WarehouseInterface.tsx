@@ -11,7 +11,7 @@ export type ItemType = {
   _id?: string;
 };
 
-type WarehouseData = {
+export type WarehouseData = {
   _id: string;
   name: string;
   owner: string;

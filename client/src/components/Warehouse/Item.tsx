@@ -12,7 +12,7 @@ export default function Item({ item }: Props) {
       <span className="tracking-widest font-mono text-lg text-neutral-300">
         QTY:{item.amount}
       </span>
-      <span className="text-white">{item.description}</span>
+      <span className="text-white tracking-wide">{item.description}</span>
     </div>
   );
 }

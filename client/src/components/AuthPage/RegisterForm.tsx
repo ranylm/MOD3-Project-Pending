@@ -15,7 +15,7 @@ export default function RegisterForm() {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<RegisterInput>();
 
   const onSubmit: SubmitHandler<RegisterInput> = async (data) => {
@@ -26,7 +26,7 @@ export default function RegisterForm() {
 
   return (
     <div>
-      <h1>RegisterForm</h1>
+      <h1>New User? Register Here!</h1>
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         Username
         <input {...register("name", { required: true })} />
@@ -51,10 +51,7 @@ export default function RegisterForm() {
           })}
         />
         {error === true ? <p style={{ color: "red" }}>Error</p> : null}
-        <button
-          type="submit"
-          disabled={Object.keys(errors).length ? true : false}
-        >
+        <button type="submit" disabled={isValid === false}>
           Register
         </button>
       </form>

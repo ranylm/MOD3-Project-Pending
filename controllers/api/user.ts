@@ -71,4 +71,4 @@ const getWarehouseList: RequestHandler = async (req, res) => {
   }
 };
 
-export default { newUser, login, getOrg };
+export default { newUser, login, getOrg, getWarehouseList };

@@ -55,7 +55,7 @@ const getWarehouse: RequestHandler = async (req, res) => {
     if (userData === null) throw new Error("User Not Found");
     // Check if warehouse owner is [User] or is a [Organization] under user
     if (
-      req.params.warehouseId === req.user._id?.toString() ||
+      warehouse.owner.toString() === req.user._id?.toString() ||
       (await User.findOne({
         _id: req.user._id,
         organizationList: warehouse.owner,
@@ -90,7 +90,7 @@ const addItem: RequestHandler = async (req, res) => {
     if (userData === null) throw new Error("User Not Found");
     // Check if warehouse owner is [User] or is a [Organization] under user
     if (
-      req.params.warehouseId === req.user._id?.toString() ||
+      warehouse.owner.toString() === req.user._id?.toString() ||
       (await User.findOne({
         _id: req.user._id,
         organizationList: warehouse.owner,
@@ -135,7 +135,7 @@ const removeItem: RequestHandler = async (req, res) => {
     if (userData === null) throw new Error("User Not Found");
     // Check if warehouse owner is [User] or is a [Organization] under user
     if (
-      req.params.warehouseId === req.user._id?.toString() ||
+      warehouse.owner.toString() === req.user._id?.toString() ||
       (await User.findOne({
         _id: req.user._id,
         organizationList: warehouse.owner,

@@ -19,7 +19,7 @@ export default function AddItemForm({ warehouseId, getWarehouseData }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<ItemInput>();
 
   const onSubmit: SubmitHandler<ItemInput> = async (data) => {
@@ -46,7 +46,7 @@ export default function AddItemForm({ warehouseId, getWarehouseData }: Props) {
         />
         Amount
         <input
-          {...register("amount", { required: true })}
+          {...register("amount", { required: true, min: 0, value: 0 })}
           type="number"
           className="bg-teal-800 border border-teal-600 rounded-md"
         />
@@ -57,10 +57,7 @@ export default function AddItemForm({ warehouseId, getWarehouseData }: Props) {
           className="bg-teal-800 border border-teal-600 rounded-md"
         />
         {error === true ? <p style={{ color: "red" }}>Invalid Data</p> : null}
-        <button
-          type="submit"
-          disabled={Object.keys(errors).length ? true : false}
-        >
+        <button type="submit" disabled={isValid === false}>
           Add item
         </button>
       </form>

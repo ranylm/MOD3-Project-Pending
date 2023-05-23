@@ -16,7 +16,7 @@ export default function CreateOrgForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<OrganizationInput>();
 
   const onSubmit: SubmitHandler<OrganizationInput> = async (data) => {
@@ -30,16 +30,17 @@ export default function CreateOrgForm() {
   };
 
   return (
-    <div>
+    <div className="w-1/4 font-Inter tracking-wide bg-teal-700 p-2 m-2 rounded-md border border-black font-thin text-neutral-100 min-w-[15rem]">
       <h1>Organization Creation Form</h1>
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         Organization Name
-        <input {...register("name", { required: true })} type="text" />
+        <input
+          {...register("name", { required: true })}
+          type="text"
+          className="bg-teal-800 border border-teal-600 rounded-md"
+        />
         {error === true ? <p style={{ color: "red" }}>Invalid Data</p> : null}
-        <button
-          type="submit"
-          disabled={Object.keys(errors).length ? true : false}
-        >
+        <button type="submit" disabled={isValid === false}>
           Create Org
         </button>
       </form>

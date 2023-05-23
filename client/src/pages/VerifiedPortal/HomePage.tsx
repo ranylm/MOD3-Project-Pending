@@ -5,14 +5,18 @@ import { getUser, logOut } from "../../utilities/user-service";
 import Dashboard from "./Dashboard";
 import OrgPage from "./OrgPage";
 
-export default function HomePage() {
+type Props = {
+  setUser: () => void;
+};
+
+export default function HomePage({ setUser }: Props) {
   return (
     <>
       <h1>
         Loged In as user <span onClick={logOut}>{getUser()._id}</span>
       </h1>
       <div className="flex flex-row">
-        <NavBar />
+        <NavBar setUser={setUser} />
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/organization/" element={<OrgPage />} />

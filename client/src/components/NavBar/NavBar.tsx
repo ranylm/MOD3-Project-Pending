@@ -1,9 +1,16 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { User } from "../../utilities/agent-service";
 import { StateContext } from "../../App";
+import { getUser, logOut } from "../../utilities/user-service";
+import { useNavigate } from "react-router-dom";
 
-export default function NavBar() {
+type Props = {
+  setUser: (a) => void;
+};
+
+export default function NavBar({ setUser }: Props) {
+  const navigate = useNavigate();
   const [orgs, setOrgs] = useState<{ name: string; _id: string }[]>([]);
 
   const context = useContext(StateContext);
@@ -13,6 +20,11 @@ export default function NavBar() {
     setOrgs(orgs);
   };
 
+  function logout() {
+    logOut();
+    setUser(null);
+    navigate("/");
+  }
   useEffect(() => {
     getUserOrgs();
   }, [context?.global?.orgId]);
@@ -21,7 +33,13 @@ export default function NavBar() {
     <nav className="shadow-xl bg-gradient-to-b from-slate-700 to-neutral-900 border border-gray-500 rounded-lg flex flex-col w-56 min-h-[50vh] py-2 m-8 px-6">
       <span className="text-emerald-400 my-2 text-xl font-Inter tracking-wider">
         {" "}
-        My App
+        {getUser().name}
+      </span>
+      <span
+        className="text-emerald-400 my-2 text-xl font-Inter tracking-wider"
+        onClick={logout}
+      >
+        Log Out
       </span>
       <Link
         to="/"

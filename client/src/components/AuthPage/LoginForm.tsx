@@ -12,7 +12,7 @@ export default function LoginForm({ setUser }) {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<LoginInput>();
 
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {
@@ -31,7 +31,7 @@ export default function LoginForm({ setUser }) {
 
   return (
     <div>
-      <h1>RegisterForm</h1>
+      <h1>Welcome! Please Login to Continue</h1>
       <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
         Email
         <input {...register("email", { required: true })} type="email" />
@@ -43,10 +43,7 @@ export default function LoginForm({ setUser }) {
         {error === true ? (
           <p style={{ color: "red" }}>Invalid Username /Password</p>
         ) : null}
-        <button
-          type="submit"
-          disabled={Object.keys(errors).length ? true : false}
-        >
+        <button type="submit" disabled={isValid === false}>
           Login
         </button>
         <Link to="/register">Don't Have A Account? Register Here!</Link>

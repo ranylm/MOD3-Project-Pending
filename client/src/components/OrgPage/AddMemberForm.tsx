@@ -17,7 +17,7 @@ export default function AddMemberForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<MemberInput>();
 
   const onSubmit: SubmitHandler<MemberInput> = async (data) => {
@@ -38,15 +38,19 @@ export default function AddMemberForm() {
   return (
     <div>
       <h1>Organization Creation Form</h1>
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className="w-1/4 font-Inter tracking-wide bg-teal-700 p-2 m-2 rounded-md border border-black font-thin text-neutral-100 min-w-[15rem] "
+        onSubmit={handleSubmit(onSubmit)}
+      >
         Add User to Organization
-        <input {...register("id", { required: true })} type="text" />
+        <input
+          {...register("id", { required: true })}
+          type="text"
+          className="bg-teal-800 border border-teal-600 rounded-md w-full"
+        />
         {error === true ? <p style={{ color: "red" }}>Invalid Data</p> : null}
-        <button
-          type="submit"
-          disabled={Object.keys(errors).length ? true : false}
-        >
-          Create Org
+        <button type="submit" disabled={isValid === false}>
+          Add Member
         </button>
       </form>
     </div>

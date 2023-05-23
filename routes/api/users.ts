@@ -7,6 +7,8 @@ const protectedRoute = require("../../config/ensureLoggedIn.js");
 // Route /api/users
 router.get("/orgs", protectedRoute, userCtrl.getOrg);
 
+router.get("/warehouses", protectedRoute, userCtrl.getWarehouseList);
+
 router.post("/login", userCtrl.login);
 
 router.post("/", userCtrl.newUser);

@@ -13,6 +13,9 @@ export const User = {
   getOrg: () => {
     return api.get("/api/users/orgs").auth();
   },
+  getWareHouseList: () => {
+    return api.get("/api/users/warehouses").auth();
+  },
 };
 
 // import { IOrganization } from "../../../models/Organization";
@@ -47,6 +50,7 @@ export const Warehouse = {
     return api.get(`/api/warehouse/${id}`).auth();
   },
   addItem: (id: string, item: IItem) => {
+    if (item.description === "") delete item.description;
     return api.post(`/api/warehouse/${id}`).body(item).auth();
   },
 };

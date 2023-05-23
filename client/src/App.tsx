@@ -28,7 +28,11 @@ function App() {
   return (
     <StateContext.Provider value={globalstate}>
       <div className="bg-gradient-to-b from-emerald-500 to-emerald-800 h-full w-full">
-        {user ? <HomePage /> : <AuthPage setUser={setUser}></AuthPage>}
+        {user ? (
+          <HomePage setUser={setUser} />
+        ) : (
+          <AuthPage setUser={setUser}></AuthPage>
+        )}
       </div>
     </StateContext.Provider>
   );

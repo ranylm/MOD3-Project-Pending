@@ -5,6 +5,7 @@ import { User } from "../../utilities/agent-service";
 import { getUser } from "../../utilities/user-service";
 import { StateContext } from "../../App";
 import { Link } from "react-router-dom";
+import UserWarehouseList from "../../components/Dashboard/UserWarehouseList";
 
 export default function Dashboard() {
   const [orgs, setOrgs] = useState<
@@ -52,6 +53,7 @@ export default function Dashboard() {
           );
         })}
       </ul>
+      <UserWarehouseList />
     </div>
   );
 }
