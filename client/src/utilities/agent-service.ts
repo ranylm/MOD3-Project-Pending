@@ -1,5 +1,6 @@
 import api from "./api-service";
 import { IUser } from "../../../models/User";
+import { IItem } from "../../../models/Item";
 
 export const User = {
   newUser: (data: IUser) => {
@@ -25,8 +26,27 @@ export const Org = {
   changeOwner: (orgId: string, UserID: string) => {
     return api.put(`/api/orgs/${orgId}/changeOwner`).body({ id: UserID });
   },
-  getMembers: (orgId: string) => {
-    return api.get(`/api/orgs/${orgId}/getMembers`).auth();
+  getOrgData: (orgId: string) => {
+    return api.get(`/api/orgs/${orgId}/`).auth();
   },
+  // getMembers: (orgId: string) => {
+  //   return api.get(`/api/orgs/${orgId}/getMembers`).auth();
+  // },
+  // getWarehouses: (orgId: string) => {
+  //   return api.get(`/api/orgs/${orgId}/getWarehouses`).auth();
+  // },
   // Delete organziation
+};
+
+export const Warehouse = {
+  // pass self id to make for self, organization id for organization
+  newWarehouse: (id: string, name: string) => {
+    return api.post(`/api/warehouse`).body({ _id: id, name: name }).auth();
+  },
+  getWarehouse: (id: string) => {
+    return api.get(`/api/warehouse/${id}`).auth();
+  },
+  addItem: (id: string, item: IItem) => {
+    return api.post(`/api/warehouse/${id}`).body(item).auth();
+  },
 };

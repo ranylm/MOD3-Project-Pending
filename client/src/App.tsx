@@ -7,7 +7,9 @@ import HomePage from "./pages/VerifiedPortal/HomePage";
 
 type GlobalState = {
   orgId?: string;
+  warehouseId?: string;
 };
+
 export const StateContext = createContext<{
   global: GlobalState;
   setGlobal: React.Dispatch<React.SetStateAction<GlobalState>> | undefined;

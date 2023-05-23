@@ -58,4 +58,17 @@ const getOrg: RequestHandler = async (req, res) => {
   }
 };
 
+const getWarehouseList: RequestHandler = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id).populate(
+      "warehouseList",
+      "name"
+    );
+    res.status(200).json(user?.warehouseList);
+  } catch (error: any) {
+    console.log(error);
+    res.status(400).send({ error: error.message });
+  }
+};
+
 export default { newUser, login, getOrg };

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { User } from "../../utilities/agent-service";
 
 type LoginInput = {
@@ -18,8 +19,14 @@ export default function LoginForm({ setUser }) {
     setError(false);
     const user = await User.login(data).send();
     // redirect on success
-    user ? setUser(user) : setError(true);
-    localStorage.setItem("token", user);
+    console.log(user);
+    if (user.error) {
+      setError(true);
+    } else {
+      setUser(user);
+
+      localStorage.setItem("token", user);
+    }
   };
 
   return (
@@ -42,6 +49,7 @@ export default function LoginForm({ setUser }) {
         >
           Login
         </button>
+        <Link to="/register">Don't Have A Account? Register Here!</Link>
       </form>
     </div>
   );

@@ -7,7 +7,11 @@ const protectedRoute = require("../../config/ensureLoggedIn.js");
 // Route /api/orgs
 router.use(protectedRoute);
 
-router.get("/:orgId/getMembers", organizationCtrl.getMembers);
+router.get("/:orgId/", organizationCtrl.getOrgData);
+
+// router.get("/:orgId/getMembers", organizationCtrl.getMembers);
+
+// router.get("/:orgId/getWarehouses", organizationCtrl.getOwnedWarehouses);
 
 router.post("/:orgId/addMember/", organizationCtrl.addMember);
 

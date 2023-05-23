@@ -1,5 +1,5 @@
 // import React from "react";
-import { Org, User } from "../utilities/agent-service";
+import { User } from "../utilities/agent-service";
 
 export default function AdminPage() {
   return (

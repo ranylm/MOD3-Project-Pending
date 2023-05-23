@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
 import { User } from "../../utilities/agent-service";
 
 type RegisterInput = {
@@ -57,6 +58,7 @@ export default function RegisterForm() {
           Register
         </button>
       </form>
+      <Link to="/">Existing User? Enter here.</Link>
     </div>
   );
 }

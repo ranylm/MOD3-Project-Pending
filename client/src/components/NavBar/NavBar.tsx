@@ -2,9 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { User } from "../../utilities/agent-service";
 import { StateContext } from "../../App";
-type Props = {};
 
-export default function NavBar({}: Props) {
+export default function NavBar() {
   const [orgs, setOrgs] = useState<{ name: string; _id: string }[]>([]);
 
   const context = useContext(StateContext);
@@ -39,7 +38,7 @@ export default function NavBar({}: Props) {
       {orgs?.map?.((e) => {
         return (
           <Link
-            onClick={() => context?.setGlobal({ orgId: e._id })}
+            onClick={() => context?.setGlobal?.({ orgId: e._id })}
             to={`organization/`}
             className="text-emerald-400 my-1 mx-3 text-base font-thin font-Inter  tracking-widest"
           >
