@@ -9,6 +9,7 @@ import "./config/database";
 import express from "express";
 import { IUser } from "./models/User";
 
+// Allows typing of req.user
 declare global {
   namespace Express {
     interface Request {

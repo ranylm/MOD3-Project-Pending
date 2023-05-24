@@ -1,6 +1,4 @@
-[Livae Link](https://mod3-warehouses.onrender.com/)
-
-#### Controls
+[Live Link](https://mod3-warehouses.onrender.com/)
 
 #### Summary
 
