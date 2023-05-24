@@ -15,7 +15,7 @@ export default function RegisterForm() {
     register,
     handleSubmit,
     watch,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<RegisterInput>();
 
   const onSubmit: SubmitHandler<RegisterInput> = async (data) => {

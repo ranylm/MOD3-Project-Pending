@@ -12,7 +12,7 @@ export default function LoginForm({ setUser }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<LoginInput>();
 
   const onSubmit: SubmitHandler<LoginInput> = async (data) => {

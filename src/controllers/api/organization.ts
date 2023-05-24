@@ -1,6 +1,5 @@
 import { RequestHandler } from "express";
 import { UpdateQuery } from "mongoose";
-import { Org } from "../../client/src/utilities/agent-service";
 import Organization, { IOrganization } from "../../models/Organization";
 import User from "../../models/User";
 const jwt = require("jsonwebtoken");

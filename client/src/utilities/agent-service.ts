@@ -1,7 +1,6 @@
 import api from "./api-service";
-import { IUser } from "../../../models/User";
-import { IItem } from "../../../models/Item";
-
+import { IUser } from "../../../src/models/User";
+import { IItem } from "../../../src/models/Item";
 export const User = {
   newUser: (data: IUser) => {
     return api.post("/api/users").body(data);

@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import NavBar from "../../components/NavBar/NavBar";
 import WarehouseInterface from "../../components/Warehouse/WarehouseInterface";
-import { getUser, logOut } from "../../utilities/user-service";
+import { getUser } from "../../utilities/user-service";
 import Dashboard from "./Dashboard";
 import OrgPage from "./OrgPage";
 

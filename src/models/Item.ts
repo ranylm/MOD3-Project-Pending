@@ -1,4 +1,4 @@
-import { Schema, Types, Document, model } from "mongoose";
+import { Schema, Types } from "mongoose";
 
 export interface IItem {
   _id?: Types.ObjectId;

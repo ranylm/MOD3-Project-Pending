@@ -42,6 +42,7 @@ const userSchema = new Schema<IUser>(
   {
     timestamps: true,
     toJSON: {
+      //@ts-ignore
       transform: function (doc, ret) {
         delete ret.password;
         delete ret.organizationList;

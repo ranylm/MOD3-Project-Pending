@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { IItem } from "../../../../models/Item";
+import { IItem } from "../../../../src/models/Item";
 import { Warehouse } from "../../utilities/agent-service";
 import { useParams } from "react-router-dom";
 
@@ -23,7 +23,7 @@ export default function EditItemForm({ item, getWarehouseData }: Props) {
     register,
     handleSubmit,
     setValue,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<ItemInput>();
 
   console.log("EDITING THIS", item);

@@ -16,7 +16,7 @@ export default function CreateOrgForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<OrganizationInput>();
 
   const onSubmit: SubmitHandler<OrganizationInput> = async (data) => {

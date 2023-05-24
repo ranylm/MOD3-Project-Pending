@@ -19,7 +19,7 @@ export default function AddItemForm({ warehouseId, getWarehouseData }: Props) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<ItemInput>();
 
   const onSubmit: SubmitHandler<ItemInput> = async (data) => {

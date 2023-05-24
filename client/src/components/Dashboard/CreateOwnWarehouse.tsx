@@ -11,7 +11,7 @@ type WarehouseInput = {
 };
 
 export default function CreateOrgForm({ type }) {
-  const [error, setError] = useState(false);
+  const [, setError] = useState(false);
   const globalstate = useContext(StateContext);
 
   const navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function CreateOrgForm({ type }) {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<WarehouseInput>();
 
   const onSubmit: SubmitHandler<WarehouseInput> = async (data) => {

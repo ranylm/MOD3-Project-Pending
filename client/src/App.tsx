@@ -1,6 +1,6 @@
 import "./App.css";
 import React, { useState, createContext } from "react";
-import { getUser, logOut } from "./utilities/user-service";
+import { getUser } from "./utilities/user-service";
 // import AdminPage from "./pages/AdminPage";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/VerifiedPortal/HomePage";

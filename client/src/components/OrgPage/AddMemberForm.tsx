@@ -17,7 +17,7 @@ export default function AddMemberForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid },
   } = useForm<MemberInput>();
 
   const onSubmit: SubmitHandler<MemberInput> = async (data) => {
