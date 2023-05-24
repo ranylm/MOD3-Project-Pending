@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node js/server.js",
     "dev": "concurrently \"nodemon server.ts\" \"pnpm --prefix ./client run dev\"",
-    "prod-build": "npm install && cd ./client && npm install && npm run build",
+    "prod-build": "npm install && npm tsc && cd ./client && npm install && npm run build",
     "prod-start": "node server.js"
   },
   "keywords": [],
