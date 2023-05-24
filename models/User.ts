@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const SALT_ROUNDS = 6;
 
 export interface IUser {
-  _id?: Types.ObjectId;
+  _id?: Schema.Types.ObjectId;
   email: string;
   name: string;
   password: string;
@@ -15,7 +15,7 @@ export interface IUser {
 
 const userSchema = new Schema<IUser>(
   {
-    _id: { type: Types.ObjectId, auto: true },
+    _id: { type: Schema.Types.ObjectId, auto: true },
     name: { type: String, required: true },
     email: {
       type: String,

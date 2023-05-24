@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Warehouse } from "../../utilities/agent-service";
 import AddItemForm from "./AddItemForm";
+import EditItemForm from "./EditItemForm";
 import ItemList from "./ItemList";
 
 export type ItemType = {
@@ -22,12 +23,13 @@ export type WarehouseData = {
 export default function WarehouseInterface() {
   const { warehouseId } = useParams();
   const [warehouse, setWarehouse] = useState<WarehouseData>();
+  const [itemToEdit, setItemToEdit] = useState(null);
 
   const getWarehouseData = async () => {
     if (!warehouseId) return;
     const data = await Warehouse.getWarehouse(warehouseId).send();
     setWarehouse(data.warehouse);
-    console.log(data);
+    // console.log(data);
   };
 
   useEffect(() => {
@@ -35,15 +37,20 @@ export default function WarehouseInterface() {
   }, []);
 
   return (
-    <div className="w-full">
-      <h1>WarehouseInterface</h1>
-      <AddItemForm
-        warehouseId={warehouseId}
-        getWarehouseData={getWarehouseData}
-      />
+    <div>
+      <div className="flex flex-row">
+        <AddItemForm
+          warehouseId={warehouseId}
+          getWarehouseData={getWarehouseData}
+        />
+        {itemToEdit && (
+          <EditItemForm item={itemToEdit} getWarehouseData={getWarehouseData} />
+        )}
+      </div>
       <ItemList
         storage={warehouse?.storage}
         getWarehouseData={getWarehouseData}
+        setItemToEdit={setItemToEdit}
       />
     </div>
   );

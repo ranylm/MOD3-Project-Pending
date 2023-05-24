@@ -28,13 +28,14 @@ export default function CreateOrgForm({ type }) {
     const response = await Warehouse.newWarehouse(targetId, data.name).send();
     globalstate?.setGlobal?.({ warehouseId: response.id });
     // redirect on success
-    response.id === undefined ? setError(true) : navigate("/organization");
+    response._id === undefined
+      ? setError(true)
+      : navigate(`/warehouse/${response._id}`);
   };
 
   return (
     <div className="w-1/4 font-Inter tracking-wide bg-teal-700 p-2 m-2 rounded-md border border-black font-thin text-neutral-100 min-w-[15rem]">
-      <h1>Warehouse Creation Form</h1>
-      <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col m-2" onSubmit={handleSubmit(onSubmit)}>
         Warehouse Name
         <input
           {...register("name", { required: true })}

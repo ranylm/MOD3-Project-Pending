@@ -53,4 +53,8 @@ export const Warehouse = {
     if (item.description === "") delete item.description;
     return api.post(`/api/warehouse/${id}`).body(item).auth();
   },
+  editItem: (warehouseId: string, item: IItem) => {
+    if (item.description === "") delete item.description;
+    return api.put(`/api/warehouse/${warehouseId}`).body(item).auth();
+  },
 };

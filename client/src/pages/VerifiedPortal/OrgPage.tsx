@@ -30,27 +30,35 @@ export default function OrgPage() {
 
   return (
     <div>
-      <h1>Organization</h1>
-      <AddMemberForm />
-      {/* if not owner cannot add warehouse */}
-      {owner == getUser()._id && <CreateOwnWarehouse type="organization" />}
-      {members?.map?.((member) => {
-        return (
-          <p className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
-            {member.name}
-          </p>
-        );
-      })}
-      <h1>Warehouses</h1>
-      {warehouses?.map?.((warehouse) => {
-        return (
-          <Link to={`/warehouse/${warehouse._id}`}>
-            <p className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
-              {warehouse.name}
-            </p>
-          </Link>
-        );
-      })}
+      <div className="flex flex-row">
+        <AddMemberForm />
+        {/* if not owner cannot add warehouse */}
+        {owner == getUser()._id && <CreateOwnWarehouse type="organization" />}
+      </div>
+      <div className="flex flex-row">
+        <div>
+          <h1>Members</h1>
+          {members?.map?.((member) => {
+            return (
+              <p className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
+                {member.name}
+              </p>
+            );
+          })}
+        </div>
+        <div>
+          <h1>Warehouses</h1>
+          {warehouses?.map?.((warehouse) => {
+            return (
+              <Link to={`/warehouse/${warehouse._id}`}>
+                <p className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
+                  {warehouse.name}
+                </p>
+              </Link>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

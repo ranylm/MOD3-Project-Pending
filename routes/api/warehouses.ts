@@ -11,7 +11,10 @@ router.post("/", warehouseCtrl.createWarehouse);
 
 router.get("/:warehouseId", warehouseCtrl.getWarehouse);
 
+router.put("/:warehouseId", warehouseCtrl.editItem);
+
 router.post("/:warehouseId", warehouseCtrl.addItem);
+
 router.delete("/:warehouseId", warehouseCtrl.removeItem);
 
 module.exports = router;

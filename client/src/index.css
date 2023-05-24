@@ -8,13 +8,19 @@
   padding: 0;
 }
 
+html,
 body {
-  height: 100vh;
+  height: 100%;
 }
-
 #root {
   height: 100%;
 }
 *:disabled {
   opacity: 40%;
+}
+
+h1 {
+  text-align: center;
+  color: #eeeeee;
+  font-size: 1rem;
 }

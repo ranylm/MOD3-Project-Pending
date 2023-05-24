@@ -28,32 +28,33 @@ export default function Dashboard() {
 
   return (
     <div>
-      <div>Dashboard</div>
       <div id="Forms" className="flex flex-row gap-6">
         <CreateOwnWarehouse type="User" />
         <CreateOrgForm />
       </div>
-
-      <ul className="">
-        {orgs?.map?.((e) => {
-          return (
-            <Link
-              to="/organization"
-              onClick={() => context?.setGlobal?.({ orgId: e._id })}
-            >
-              <li className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
-                <div className="flex flex-col">
-                  <span className="text-xl">{e.name}</span>
-                  <span className="text-xl">
-                    {e.owner === user._id ? "Owner" : "Member"}
-                  </span>
-                </div>
-              </li>
-            </Link>
-          );
-        })}
-      </ul>
-      <UserWarehouseList />
+      <div className="flex flex-row">
+        <ul className="">
+          <h1 className="text-center">Organizations</h1>
+          {orgs?.map?.((e) => {
+            return (
+              <Link
+                to="/organization"
+                onClick={() => context?.setGlobal?.({ orgId: e._id })}
+              >
+                <li className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
+                  <div className="flex flex-col">
+                    <span className="text-xl">{e.name}</span>
+                    <span className="text-xl">
+                      {e.owner === user._id ? "Owner" : "Member"}
+                    </span>
+                  </div>
+                </li>
+              </Link>
+            );
+          })}
+        </ul>
+        <UserWarehouseList />
+      </div>
     </div>
   );
 }

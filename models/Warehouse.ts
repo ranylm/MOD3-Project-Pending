@@ -6,7 +6,7 @@ export interface IWarehouse {
   name: string;
   owner: Types.ObjectId;
   ownerType: "User" | "Organization";
-  storage: Types.Array<IItem>;
+  storage: Types.DocumentArray<IItem & Document>;
 }
 
 const warehouseSchema = new Schema<IWarehouse>({

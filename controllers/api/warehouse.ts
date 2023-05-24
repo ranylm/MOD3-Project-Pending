@@ -40,7 +40,7 @@ const createWarehouse: RequestHandler = async (req, res) => {
       });
     }
 
-    res.status(200).json({ message: "Warehouse Created" });
+    res.status(200).json(warehouse);
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
@@ -147,20 +147,36 @@ const removeItem: RequestHandler = async (req, res) => {
     } else {
       throw new Error("Access Denied");
     }
-
-    // if (
-    //   req.body._id === req.user._id ||
-    //   userData?.organizationList?.find((e) => {
-    //     return e.toString() === warehouse.owner.toString();
-    //   })
-    // ) {
-    //   res.status(200).json({ data: warehouse });
-    // } else {
-    //   throw new Error("Access Denied");
-    // }
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
 };
 
-export default { createWarehouse, getWarehouse, addItem, removeItem };
+const editItem: RequestHandler = async (req, res) => {
+  try {
+    console.log(req.body);
+    // Verify access
+    const warehouse = await Warehouse.findById(req.params.warehouseId);
+    if (warehouse === null) throw new Error("Warehouse Not Found");
+    const userData = await User.findById(req.user._id);
+    if (userData === null) throw new Error("User Not Found");
+    // Check if warehouse owner is [User] or is a [Organization] under user
+    if (
+      warehouse.owner.toString() === req.user._id?.toString() ||
+      (await User.findOne({
+        _id: req.user._id,
+        organizationList: warehouse.owner,
+      }))
+    ) {
+      warehouse.storage.id(req.body._id)?.set(req.body);
+      await warehouse.save();
+      res.status(200).send({ message: "Item Editted" });
+    } else {
+      throw new Error("Access Denied");
+    }
+  } catch (error: any) {
+    res.status(400).json({ error: error.message });
+  }
+};
+
+export default { createWarehouse, getWarehouse, addItem, removeItem, editItem };

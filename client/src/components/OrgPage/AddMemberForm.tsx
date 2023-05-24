@@ -36,12 +36,8 @@ export default function AddMemberForm() {
   };
 
   return (
-    <div>
-      <h1>Organization Creation Form</h1>
-      <form
-        className="w-1/4 font-Inter tracking-wide bg-teal-700 p-2 m-2 rounded-md border border-black font-thin text-neutral-100 min-w-[15rem] "
-        onSubmit={handleSubmit(onSubmit)}
-      >
+    <div className="w-1/4 font-Inter tracking-wide bg-teal-700 p-2 m-2 rounded-md border border-black font-thin text-neutral-100 min-w-[15rem] ">
+      <form className="flex flex-col m-2" onSubmit={handleSubmit(onSubmit)}>
         Add User to Organization
         <input
           {...register("id", { required: true })}

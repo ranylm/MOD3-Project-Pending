@@ -27,7 +27,7 @@ function App() {
 
   return (
     <StateContext.Provider value={globalstate}>
-      <div className="bg-gradient-to-b from-emerald-500 to-emerald-800 h-full w-full">
+      <div className="bg-gradient-to-b from-emerald-500 to-emerald-800 h-screen w-full overflow-auto">
         {user ? (
           <HomePage setUser={setUser} />
         ) : (
