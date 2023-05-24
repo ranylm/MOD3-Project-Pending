@@ -26,6 +26,7 @@ const logger = require("morgan");
 app.use(logger("dev"));
 app.use(express.json());
 
+app.use(express.static(path.join(__dirname, "..", "client", "dist")));
 // Routes
 
 app.use(require("./config/checktoken"));
@@ -35,7 +36,7 @@ app.use("/api/warehouse", require("./routes/api/warehouses"));
 
 // Catch all Route to Home
 app.get("/*", function (req, res) {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+  res.sendFile(path.join(__dirname, "..", "client", "dist", "index.html"));
 });
 
 // Listen
