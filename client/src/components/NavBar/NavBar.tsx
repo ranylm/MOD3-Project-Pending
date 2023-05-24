@@ -56,7 +56,9 @@ export default function NavBar({ setUser }: Props) {
       {orgs?.map?.((e) => {
         return (
           <Link
-            onClick={() => context?.setGlobal?.({ orgId: e._id })}
+            onClick={() =>
+              context?.setGlobal?.({ ...context.global, orgId: e._id })
+            }
             to={`organization/`}
             className="text-emerald-400 my-1 mx-3 text-base font-thin font-Inter  tracking-widest"
           >

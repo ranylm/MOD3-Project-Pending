@@ -39,7 +39,9 @@ export default function Dashboard() {
             return (
               <Link
                 to="/organization"
-                onClick={() => context?.setGlobal?.({ orgId: e._id })}
+                onClick={() =>
+                  context?.setGlobal?.({ ...context.global, orgId: e._id })
+                }
               >
                 <li className="text-teal-300 capitalize shadow-lg rounded-lg flex flex-col bg-teal-800 m-2 p-2 min-w-[15rem] border border-teal-500">
                   <div className="flex flex-col">

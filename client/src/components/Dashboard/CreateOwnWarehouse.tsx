@@ -26,7 +26,10 @@ export default function CreateOrgForm({ type }) {
     setError(false);
     const targetId = type === "User" ? getUser()._id : globalstate.global.orgId;
     const response = await Warehouse.newWarehouse(targetId, data.name).send();
-    globalstate?.setGlobal?.({ warehouseId: response.id });
+    globalstate?.setGlobal?.({
+      ...globalstate.global,
+      warehouseId: response.id,
+    });
     // redirect on success
     response._id === undefined
       ? setError(true)
@@ -42,7 +45,9 @@ export default function CreateOrgForm({ type }) {
           type="text"
           className="bg-teal-800 border border-teal-600 rounded-md"
         />
-        {isValid === true ? <p style={{ color: "red" }}>Invalid Data</p> : null}
+        {isValid === false ? (
+          <p style={{ color: "red" }}>Invalid Data</p>
+        ) : null}
         {/* Owner ID (User or Organization)
         <input {...register("id", { required: true })} type="text" />
         {error === true ? <p style={{ color: "red" }}>Invalid Data</p> : null} */}

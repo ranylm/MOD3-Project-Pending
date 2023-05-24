@@ -22,9 +22,7 @@ export default function CreateOrgForm() {
   const onSubmit: SubmitHandler<OrganizationInput> = async (data) => {
     setError(false);
     const response = await Org.newOrg(data.name).send();
-    globalstate?.setGlobal?.({
-      orgId: response.id,
-    });
+    globalstate?.setGlobal?.({ ...globalstate.global, orgId: response.id });
     // redirect on success
     response.id === undefined ? setError(true) : navigate("/organization");
   };
