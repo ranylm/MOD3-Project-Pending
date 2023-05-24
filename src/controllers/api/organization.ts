@@ -35,13 +35,11 @@ const getOrgData: RequestHandler = async (req, res) => {
       .populate("memberList")
       .populate("warehouseList", "name");
     console.log(org);
-    res
-      .status(200)
-      .json({
-        members: org?.memberList,
-        owner: org?.owner,
-        warehouses: org?.warehouseList,
-      });
+    res.status(200).json({
+      members: org?.memberList,
+      owner: org?.owner,
+      warehouses: org?.warehouseList,
+    });
   } catch (error: any) {
     res.status(400).json({ error: error.message });
   }
@@ -86,7 +84,7 @@ const addMember: RequestHandler = async (req, res) => {
     const org = await Organization.findById(req.params.orgId);
     if (!org) throw new Error("Organization Not Found");
     console.log(req.user._id?.toString() === org.owner.toString());
-    // Check if user is owner before adding new member
+    // Check if [user] is [owner] before adding new [member]
     if (req.user._id?.toString() === org.owner.toString()) {
       await Organization.findByIdAndUpdate<IOrganization>(req.params.orgId, {
         $addToSet: { memberList: req.body.id },
