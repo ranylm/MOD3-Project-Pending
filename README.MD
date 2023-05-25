@@ -11,8 +11,14 @@ Run in project root:
 
 ```
 git https://github.com/ranylm/MOD3-Project-Pending.git
-npm install
+npm install && cd ./client && npm install
 npm run dev
+```
+##### Production
+```
+git https://github.com/ranylm/MOD3-Project-Pending.git
+npm run prod-build
+npm run prod-start
 ```
 
 #### Details
@@ -20,6 +26,8 @@ npm run dev
 This project consists of a React frontend and Express backend.
 Mongoose is used to manage Users, Organizations, Warehouses, and Items.
 Authentication is done using JWT for users, and relation models of all entities to the User.
+
+[Trello Link](https://trello.com/b/HD5XbLZg/ps-mod3)
 
 #### Built with:
 
@@ -30,6 +38,9 @@ Authentication is done using JWT for users, and relation models of all entities 
 - Typescript/Javascript
 - HTML/CSS
 - JWT
+- React-Router
+- react-hook-form
+- bcrypt
 
 #### To Be Fixed
 
